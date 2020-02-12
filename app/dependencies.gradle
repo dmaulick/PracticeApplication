@@ -1,0 +1,18 @@
+ext {
+
+    // Android
+    androidBuildToolsVersion = "29.0.2"
+    androidMinSdkVersion = 24
+    androidTargetSdkVersion = 29
+    androidCompileSdkVersion = 29
+
+
+    // Libraries
+
+    // Testing
+
+
+    appDependencies = [
+            
+    ]
+}
