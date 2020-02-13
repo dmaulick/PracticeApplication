@@ -1,4 +1,4 @@
-package com.example.practiceapplication
+package com.example.featuremodule
 
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar

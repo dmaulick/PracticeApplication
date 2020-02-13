@@ -9,6 +9,7 @@ ext {
     versionCode = 1
     versionName = "1.0"
 
+    kotlin_version = '1.3.50'
 
     // Androidx Libraries
     appcompatVersion = '1.0.2'
@@ -33,7 +34,8 @@ ext {
             androidxNavUi: "androidx.navigation:navigation-ui-ktx:${androidxNavUiVersion}",
 
             dagger: "com.google.dagger:dagger:${daggerVersion}",
-            daggerAnnotationProcessor: "com.google.dagger:dagger-compiler:${daggerVersion}"
+            daggerAnnotationProcessor: "com.google.dagger:dagger-compiler:${daggerVersion}",
+            kotlin: "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     ]
 
     appTestDependencies = [
