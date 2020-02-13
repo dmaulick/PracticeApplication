@@ -1,10 +1,11 @@
-package com.example.featuremodule
+package com.example.practiceapplication.MainFeature
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.practiceapplication.R
 
 class DrinkListFragment : Fragment() {
 

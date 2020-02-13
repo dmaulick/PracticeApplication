@@ -39,6 +39,10 @@ dependencies {
     implementation appDependencies.dagger
     kapt appDependencies.daggerAnnotationProcessor
 
+    // Networking
+    implementation appDependencies.retrofit
+    implementation appDependencies.okHttpLogInterceptor
+
     // Libs
     implementation appDependencies.appcompat
     implementation appDependencies.kotlin

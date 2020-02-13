@@ -1,4 +1,4 @@
-package com.example.featuremodule
+package com.example.practiceapplication
 
 import androidx.fragment.app.testing.FragmentScenario
 import androidx.test.ext.junit.runners.AndroidJUnit4

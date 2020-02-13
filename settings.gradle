@@ -1,2 +1,2 @@
-include ':app', ':featuremodule', ':base'
+include ':app'
 rootProject.name='PracticeApplication'

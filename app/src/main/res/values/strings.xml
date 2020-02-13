@@ -1,4 +1,17 @@
 <resources>
+
+    <!--    Application Strings -->
     <string name="app_name">PracticeApplication</string>
     <string name="action_settings">Settings</string>
+
+
+    <!--    Drinks Api Strings -->
+    <string name="drinks_api_url">https://the-cocktail-db.p.rapidapi.com</string>
+
+    <string name="drinks_api_host_header">x-rapidapi-host</string>
+    <string name="drinks_api_host_header_content">the-cocktail-db.p.rapidapi.com</string>
+
+    <string name="drinks_api_key_header">x-rapidapi-key</string>
+    <string name="drinks_api_key_header_content">98fb77a5admsh4c6b417c476fac4p1ff97cjsn19d7daa7bbea</string>
+
 </resources>
