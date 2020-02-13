@@ -22,6 +22,8 @@ ext {
     daggerVersion = '2.11'
     retrofitVersion = '2.7.1'
     okhttpLogInterceptorVersion = '4.3.1'
+    timberVersion = '4.7.1'
+    gsonConverterVersion = '2.0.0-beta4'
 
     // Android Testing
     androidxTestRunnerVersion = '1.1.0'
@@ -41,7 +43,9 @@ ext {
             daggerAnnotationProcessor: "com.google.dagger:dagger-compiler:${daggerVersion}",
             kotlin: "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
             retrofit: "com.squareup.retrofit2:retrofit:${retrofitVersion}",
-            okHttpLogInterceptor: "com.squareup.okhttp3:logging-interceptor:${okhttpLogInterceptorVersion}"
+            okHttpLogInterceptor: "com.squareup.okhttp3:logging-interceptor:${okhttpLogInterceptorVersion}",
+            timber: "com.jakewharton.timber:timber:${timberVersion}",
+            gsonConverter: "com.squareup.retrofit2:converter-gson:${gsonConverterVersion}"
     ]
 
     appTestDependencies = [
