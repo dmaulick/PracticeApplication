@@ -6,6 +6,9 @@ ext {
     androidTargetSdkVersion = 29
     androidCompileSdkVersion = 29
 
+    versionCode = 1
+    versionName = "1.0"
+
 
     // Androidx Libraries
     appcompatVersion = '1.0.2'
@@ -13,6 +16,7 @@ ext {
     androidxNavUiVersion = '2.2.1'
 
     // 3rd Party Libraries
+    daggerVersion = '2.11'
 
     // Android Testing
     androidxTestRunnerVersion = '1.1.0'
@@ -26,7 +30,10 @@ ext {
     appDependencies = [
             appcompat: "androidx.appcompat:appcompat:${appcompatVersion}",
             androidxfragmentNav: "androidx.navigation:navigation-fragment-ktx:${androidxFragmentNavVersion}",
-            androidxNavUi: "androidx.navigation:navigation-ui-ktx:${androidxNavUiVersion}"
+            androidxNavUi: "androidx.navigation:navigation-ui-ktx:${androidxNavUiVersion}",
+
+            dagger: "com.google.dagger:dagger:${daggerVersion}",
+            daggerAnnotationProcessor: "com.google.dagger:dagger-compiler:${daggerVersion}"
     ]
 
     appTestDependencies = [
