@@ -7,12 +7,38 @@ ext {
     androidCompileSdkVersion = 29
 
 
-    // Libraries
+    // Androidx Libraries
+    appcompatVersion = '1.0.2'
+    androidxFragmentNavVersion = '2.2.1'
+    androidxNavUiVersion = '2.2.1'
 
-    // Testing
+    // 3rd Party Libraries
 
+    // Android Testing
+    androidxTestRunnerVersion = '1.1.0'
+    androidxTestJunitVersion = '1.0.0'
+    androidxTestEspressoIntentsVersion = '3.1.0'
+    androidxTestEspressoCoreVersion = "3.1.0"
+    androidxTestTruthVersion = '1.0.0'
+    androidxRoboelectricVersion = '4.0'
+    fragment_version = '1.2.0'
 
     appDependencies = [
-            
+            appcompat: "androidx.appcompat:appcompat:${appcompatVersion}",
+            androidxfragmentNav: "androidx.navigation:navigation-fragment-ktx:${androidxFragmentNavVersion}",
+            androidxNavUi: "androidx.navigation:navigation-ui-ktx:${androidxNavUiVersion}"
+    ]
+
+    appTestDependencies = [
+
+            // Required for simulator and roboelectric tests:
+            androidxTestRunner: "androidx.test:runner:${androidxTestRunnerVersion}",
+            androidxTestJunit: "androidx.test.ext:junit:${androidxTestJunitVersion}",
+            androidxTestEspressoIntents: "androidx.test.espresso:espresso-intents:${androidxTestEspressoIntentsVersion}",
+            androidxTestEspressoCore: "androidx.test.espresso:espresso-core:${androidxTestEspressoCoreVersion}",
+            androidxTestTruth: "androidx.test.ext:truth:${androidxTestTruthVersion}",
+            androidxRoboelectric: "org.robolectric:robolectric:${androidxRoboelectricVersion}",
+            androidxFragmentTesting: "androidx.fragment:fragment-testing:$fragment_version"
+
     ]
 }

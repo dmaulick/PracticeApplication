@@ -1,10 +1,10 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
+    testOptions.unitTests.includeAndroidResources = true
     compileSdkVersion rootProject.androidCompileSdkVersion
     buildToolsVersion rootProject.androidBuildToolsVersion
     defaultConfig {
@@ -26,12 +26,41 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    def appDependencies = rootProject.appDependencies
+    def appTestDependencies = rootProject.appTestDependencies
+
+    // Dagger
+    implementation 'com.google.dagger:dagger:2.11'
+    kapt 'com.google.dagger:dagger-compiler:2.11'
+
+    // Libs
+    implementation appDependencies.appcompat
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.0.2'
-    implementation 'androidx.core:core-ktx:1.0.2'
+    implementation 'androidx.core:core-ktx:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation 'com.google.android.material:material:1.0.0'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    implementation 'com.google.android.material:material:1.1.0'
+    implementation appDependencies.androidxfragmentNav
+    implementation appDependencies.androidxNavUi
+
+
+    // Android Testing
+    androidTestImplementation appTestDependencies.androidxTestRunner
+    androidTestImplementation appTestDependencies.androidxTestJunit
+    androidTestImplementation appTestDependencies.androidxTestEspressoIntents
+    androidTestImplementation appTestDependencies.androidxTestEspressoCore
+    androidTestImplementation appTestDependencies.androidxTestTruth
+    debugImplementation appTestDependencies.androidxFragmentTesting // debug implementation because of way fragment scenario is implemented
+
+
+    // Roboelectric Testing
+    testImplementation appTestDependencies.androidxTestRunner
+    testImplementation appTestDependencies.androidxTestJunit
+    testImplementation appTestDependencies.androidxTestEspressoIntents
+    testImplementation appTestDependencies.androidxTestEspressoCore
+    testImplementation appTestDependencies.androidxTestTruth
+    testImplementation appTestDependencies.androidxRoboelectric
+
+//    testImplementation 'junit:junit:4.12'
+
 }
