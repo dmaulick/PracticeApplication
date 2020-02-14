@@ -1,13 +1,15 @@
-package com.example.practiceapplication.NetworkingModule
+package com.example.practiceapplication
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.example.practiceapplication.NetworkingModule.DrinksApiSource
 import com.example.practiceapplication.NetworkingModule.WModels.WDrinkResult
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.*
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.robolectric.RobolectricTestRunner
 
-@RunWith(AndroidJUnit4::class)
+@RunWith(RobolectricTestRunner::class)
 class DrinksApiSourceTest {
 
     @Test
@@ -38,7 +40,9 @@ class DrinksApiSourceTest {
         val drinkId = 17829
 
         val drinkResult: WDrinkResult = runBlocking {
-            DrinksApiSource.getDrinkByIdCoroutine(drinkId)
+            DrinksApiSource.getDrinkByIdCoroutine(
+                drinkId
+            )
         }
 
         assertNotNull(drinkResult)
@@ -47,7 +51,7 @@ class DrinksApiSourceTest {
         val drink = drinkResult.drinks[0]
 
         assertNotNull(drink)
-        assertEquals(drink.alcoholic, "alcoholic")
+        assertEquals(drink.alcoholic, "Alcoholic")
         assertEquals(drink.drinkCategory, "Cocktail")
         assertEquals(drink.drinkId, "17829")
         assertEquals(drink.drinkName, "Penicillin")

@@ -5,7 +5,11 @@ apply plugin: 'kotlin-kapt'
 
 android {
 
-    testOptions.unitTests.includeAndroidResources = true
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
 
     compileSdkVersion rootProject.androidCompileSdkVersion
     buildToolsVersion rootProject.androidBuildToolsVersion
@@ -65,7 +69,8 @@ dependencies {
     androidTestImplementation appTestDependencies.androidxTestEspressoIntents
     androidTestImplementation appTestDependencies.androidxTestEspressoCore
     androidTestImplementation appTestDependencies.androidxTestTruth
-    debugImplementation appTestDependencies.androidxFragmentTesting // debug implementation because of way fragment scenario is implemented
+    debugImplementation appTestDependencies.androidxFragmentTesting
+    androidTestImplementation appTestDependencies.instantTaskExecutor
 
 
     // Roboelectric Testing
@@ -75,6 +80,7 @@ dependencies {
     testImplementation appTestDependencies.androidxTestEspressoCore
     testImplementation appTestDependencies.androidxTestTruth
     testImplementation appTestDependencies.androidxRoboelectric
+    testImplementation appTestDependencies.instantTaskExecutor
 
 
 }

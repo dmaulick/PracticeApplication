@@ -56,7 +56,7 @@ object DrinksApiSource {
             }
 
             override fun onResponse(call: Call<WDrinkResult>, response: Response<WDrinkResult>) {
-                liveData.value = response.body()
+                liveData.postValue(response.body())
             }
 
         })
@@ -70,4 +70,23 @@ object DrinksApiSource {
 
     suspend fun getDrinkByIdCoroutine(drinkId: Int): WDrinkResult = drinksApi.getDrinkByIdCoroutine(drinkId)
 
+
+    fun getDrinkByIdLiveData(drinkId: Int): MutableLiveData<WDrinkResult?> {
+
+        val liveData = MutableLiveData<WDrinkResult?>()
+
+        drinksApi.getDrinkByIdLiveData(drinkId).enqueue(object : Callback<WDrinkResult> {
+
+            override fun onFailure(call: Call<WDrinkResult>, t: Throwable) {
+                Timber.e("Failure on livedata get drink by id call.")
+                Timber.e(t)
+            }
+
+            override fun onResponse(call: Call<WDrinkResult>, response: Response<WDrinkResult>) {
+                liveData.postValue(response.body())
+            }
+        })
+
+        return liveData
+    }
 }
