@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import com.example.practiceapplication.MainFeature.DrinksList.DrinkListFragment
 import com.example.practiceapplication.R
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -28,7 +29,8 @@ class MainActivity : AppCompatActivity() {
     private fun setDrinkListFragment() {
         supportFragmentManager
             .beginTransaction()
-            .add(main_frame_layout.id, DrinkListFragment(), "MainActivity_DrinkListFrag")
+            .add(main_frame_layout.id,
+                DrinkListFragment(), "MainActivity_DrinkListFrag")
             .disallowAddToBackStack()
             .commit()
     }

@@ -61,6 +61,8 @@ dependencies {
     implementation appDependencies.androidxNavUi
     implementation appDependencies.timber
     implementation appDependencies.gsonConverter
+    implementation appDependencies.lifecycleExtensions
+    implementation appDependencies.lifecycleVm
 
 
     // Android Testing

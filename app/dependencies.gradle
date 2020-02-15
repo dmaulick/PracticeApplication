@@ -46,7 +46,9 @@ ext {
             retrofit: "com.squareup.retrofit2:retrofit:${retrofitVersion}",
             okHttpLogInterceptor: "com.squareup.okhttp3:logging-interceptor:${okhttpLogInterceptorVersion}",
             timber: "com.jakewharton.timber:timber:${timberVersion}",
-            gsonConverter: "com.squareup.retrofit2:converter-gson:${gsonConverterVersion}"
+            gsonConverter: "com.squareup.retrofit2:converter-gson:${gsonConverterVersion}",
+            lifecycleExtensions: "android.arch.lifecycle:extensions:1.1.0",
+            lifecycleVm: "android.arch.lifecycle:viewmodel:1.1.0"
     ]
 
     appTestDependencies = [

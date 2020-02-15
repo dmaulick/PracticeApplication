@@ -1,11 +1,11 @@
-package com.example.practiceapplication.MainFeature
+package com.example.practiceapplication.MainFeature.DrinksList
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.practiceapplication.MainFeature.DrinksAdaptor.DrinksViewHolder
+import com.example.practiceapplication.MainFeature.DrinksList.DrinksAdaptor.DrinksViewHolder
 import com.example.practiceapplication.NetworkingModule.WModels.WDrinkModel
 import com.example.practiceapplication.R
 import kotlinx.android.synthetic.main.drinks_view_holder.view.*
