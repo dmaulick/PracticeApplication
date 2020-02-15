@@ -17,12 +17,23 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(main_toolbar)
+        setDrinkListFragment()
 
         floating_btn.setOnClickListener { view ->
             Snackbar.make(view, "Floating button pressed", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
         }
     }
+
+    private fun setDrinkListFragment() {
+        supportFragmentManager
+            .beginTransaction()
+            .add(main_frame_layout.id, DrinkListFragment(), "MainActivity_DrinkListFrag")
+            .disallowAddToBackStack()
+            .commit()
+    }
+
+
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
