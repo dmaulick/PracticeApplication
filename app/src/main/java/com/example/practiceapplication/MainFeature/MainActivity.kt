@@ -5,30 +5,23 @@ import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
-import com.example.practiceapplication.NetworkingModule.DrinksApiSource
-import com.example.practiceapplication.NetworkingModule.WModels.WDrinkResult
+import android.view.View
 import com.example.practiceapplication.R
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.coroutines.runBlocking
 
 class MainActivity : AppCompatActivity() {
+
+    val testerVal = "testerValue"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        setSupportActionBar(toolbar)
+        setSupportActionBar(main_toolbar)
 
-
-        val drinkResult: WDrinkResult = runBlocking {
-            DrinksApiSource.getRandromDrinkCoroutines()
-        }
-
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+        floating_btn.setOnClickListener { view ->
+            Snackbar.make(view, "Floating button pressed", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
         }
-
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -42,7 +35,16 @@ class MainActivity : AppCompatActivity() {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
-            R.id.action_settings -> true
+            R.id.action_settings -> {
+                Snackbar.make(findViewById<View>(android.R.id.content), "Toolbar settings button pressed", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show()
+                true
+            }
+            R.id.action_second -> {
+                Snackbar.make(findViewById<View>(android.R.id.content), "Toolbar SECOND button pressed", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show()
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }

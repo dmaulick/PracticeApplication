@@ -7,21 +7,18 @@ import androidx.test.core.app.ActivityScenario
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.core.app.launchActivity
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import androidx.test.platform.app.InstrumentationRegistry
 import com.example.practiceapplication.MainFeature.MainActivity
-import com.google.common.truth.Truth.assertThat
+import com.google.common.truth.Truth
+import junit.framework.Assert
 import junit.framework.Assert.assertEquals
 import org.junit.After
-import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.robolectric.RobolectricTestRunner
 
 
-
-@RunWith(AndroidJUnit4::class)
-class MainActivityTests {
-
-
+@RunWith(RobolectricTestRunner::class)
+class MainActivityTest {
     // Good resource for testing activity with scenario
     // https://developer.android.com/reference/androidx/test/core/app/ActivityScenario
     // https://medium.com/stepstone-tech/better-tests-with-androidxs-activityscenario-in-kotlin-part-1-6a6376b713ea
@@ -49,7 +46,7 @@ class MainActivityTests {
 
         scenario = launchActivity<MainActivity>(intent)
         scenario.onActivity {
-            assertThat(it.testerVal).isEqualTo("testerValue")
+            Truth.assertThat(it.testerVal).isEqualTo("testerValue")
         }
 
     }
@@ -64,7 +61,7 @@ class MainActivityTests {
 
         ActivityScenario.launch(MainActivity::class.java).use { scenario ->
             scenario.onActivity { activity ->
-                assertThat(activity.testerVal).isEqualTo("testerValue")
+                Truth.assertThat(activity.testerVal).isEqualTo("testerValue")
             }
         }
 

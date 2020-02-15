@@ -71,6 +71,7 @@ dependencies {
     androidTestImplementation appTestDependencies.androidxTestTruth
     debugImplementation appTestDependencies.androidxFragmentTesting
     androidTestImplementation appTestDependencies.instantTaskExecutor
+    androidTestImplementation appTestDependencies.androidxTestCoreKtx
 
 
     // Roboelectric Testing
@@ -81,6 +82,7 @@ dependencies {
     testImplementation appTestDependencies.androidxTestTruth
     testImplementation appTestDependencies.androidxRoboelectric
     testImplementation appTestDependencies.instantTaskExecutor
+    testImplementation appTestDependencies.androidxTestCoreKtx
 
 
 }

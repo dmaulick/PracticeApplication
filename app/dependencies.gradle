@@ -59,7 +59,7 @@ ext {
             androidxTestTruth: "androidx.test.ext:truth:${androidxTestTruthVersion}",
             androidxRoboelectric: "org.robolectric:robolectric:${androidxRoboelectricVersion}",
             androidxFragmentTesting: "androidx.fragment:fragment-testing:$fragment_version",  // use 'debugImplementation because of way fragment scenario is implemented
-            instantTaskExecutor: "android.arch.core:core-testing:${instantTaskExecutor}"  // Junit rule to force all asynchronous calls to be run synchronously - useful for livedata testing
-
+            instantTaskExecutor: "android.arch.core:core-testing:${instantTaskExecutor}",  // Junit rule to force all asynchronous calls to be run synchronously - useful for livedata testing
+            androidxTestCoreKtx: "androidx.test:core-ktx:1.1.0"
     ]
 }
