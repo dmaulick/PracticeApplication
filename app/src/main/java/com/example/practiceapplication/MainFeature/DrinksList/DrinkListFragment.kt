@@ -67,6 +67,9 @@ class DrinkListFragment : Fragment() {
 
         // 3) Subscribe to state
         subscribeToViewModel()
+
+        // 4) Run View
+        viewModel.getDrinksList()
     }
 
     private fun initDrinkRecyclerView() {
@@ -89,17 +92,24 @@ class DrinkListFragment : Fragment() {
 
         when (drinksList.status) {
             Status.SUCCESS -> {
+                Timber.d("Success Load of drinks.")
                 view?.run {
                     Snackbar.make(this.rootView, "Success Load of drinks.", Snackbar.LENGTH_LONG).setAction("Action", null).show()
                 } ?: throw Exception("No root view in success")
-
+                drinksList.data?.run {
+                    drinksAdaptor.drinksList.clear()
+                    drinksAdaptor.drinksList.addAll(this)
+                    drinksAdaptor.notifyDataSetChanged()
+                }
             }
             Status.LOADING -> {
+                Timber.d("Loading drinks.")
                 view?.run {
                     Snackbar.make(this.rootView, "Loading drinks.", Snackbar.LENGTH_LONG).setAction("Action", null).show()
                 } ?: throw Exception("No root view in loading")
             }
             Status.ERROR -> {
+                Timber.e("Error Load of drinks.")
                 view?.run {
                     Snackbar.make(this.rootView, "Error Load of drinks.", Snackbar.LENGTH_LONG).setAction("Action", null).show()
                 } ?: throw Exception("No root view in error")

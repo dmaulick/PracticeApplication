@@ -1,5 +1,6 @@
 package com.example.practiceapplication
 
+import androidx.test.platform.app.InstrumentationRegistry
 import com.example.practiceapplication.NetworkingModule.DrinksApiSource
 import com.example.practiceapplication.NetworkingModule.WModels.WDrinkResult
 import kotlinx.coroutines.runBlocking
@@ -14,8 +15,10 @@ class DrinksApiSourceTest {
     @Test
     fun randomDrinkCall_UsingCoroutines() {
 
+        val context = InstrumentationRegistry.getInstrumentation().targetContext
+
         val drinkResult: WDrinkResult = runBlocking {
-            DrinksApiSource.getRandomDrinkCoroutines()
+            DrinksApiSource.getInstance(context).getRandomDrinkCoroutines()
         }
 
         assertNotNull(drinkResult)
@@ -38,8 +41,10 @@ class DrinksApiSourceTest {
 
         val drinkId = 17829
 
+        val context = InstrumentationRegistry.getInstrumentation().targetContext
+
         val drinkResult: WDrinkResult = runBlocking {
-            DrinksApiSource.getDrinkByIdCoroutine(
+            DrinksApiSource.getInstance(context).getDrinkByIdCoroutine(
                 drinkId
             )
         }

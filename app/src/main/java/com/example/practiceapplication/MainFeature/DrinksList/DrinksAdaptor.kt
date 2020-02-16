@@ -10,7 +10,7 @@ import com.example.practiceapplication.NetworkingModule.WModels.WDrinkModel
 import com.example.practiceapplication.R
 import kotlinx.android.synthetic.main.drinks_view_holder.view.*
 
-class DrinksAdaptor(private val drinksList: ArrayList<WDrinkModel>) : RecyclerView.Adapter<DrinksViewHolder>() {
+class DrinksAdaptor(val drinksList: ArrayList<WDrinkModel>) : RecyclerView.Adapter<DrinksViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DrinksViewHolder {
         val viewHolder = LayoutInflater.from(parent.context)
@@ -29,7 +29,6 @@ class DrinksAdaptor(private val drinksList: ArrayList<WDrinkModel>) : RecyclerVi
         holder.drinkCategory.text = drink.drinkCategory
         holder.drinkName.text = drink.drinkName
     }
-
 
     inner class DrinksViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val drinkId: TextView = itemView.drink_id
