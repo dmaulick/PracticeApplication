@@ -12,15 +12,11 @@ class DrinksListRepository private constructor(private val drinksApiSource: IDri
 
         val expectedDrinkList = arrayListOf<WDrinkModel>()
 
-        val drinkResult = drinksApiSource.getDrinkByIdCoroutine(17829)
-        val drink = drinkResult.drinks[0]
-        expectedDrinkList.add(drink)
-
-//        for (i in 17829 until 17833) {
-//            val drinkResult = drinksApiSource.getDrinkByIdCoroutine(i)
-//            val drink = drinkResult.drinks[0]
-//            expectedDrinkList.add(drink)
-//        }
+        for (i in 17829 until 17833) {
+            val drinkResult = drinksApiSource.getDrinkByIdCoroutine(i)
+            val drink = drinkResult.drinks[0]
+            expectedDrinkList.add(drink)
+        }
 
         return expectedDrinkList
     }
@@ -29,7 +25,7 @@ class DrinksListRepository private constructor(private val drinksApiSource: IDri
 
         val randomDrinkList = arrayListOf<WDrinkModel>()
 
-        for (i in 17829 until 17833) {
+        for (i in 0 until 15) {
             val drinkResult = drinksApiSource.getRandomDrinkCoroutines()
             val drink = drinkResult.drinks[0]
             randomDrinkList.add(drink)

@@ -63,6 +63,7 @@ dependencies {
     implementation appDependencies.gsonConverter
     implementation appDependencies.lifecycleExtensions
     implementation appDependencies.lifecycleVm
+    implementation appDependencies.roomKtx
 
 
     // Android Testing
