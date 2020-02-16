@@ -36,6 +36,8 @@ class DrinkRepoTest {
 
 
     // These do not work but the general idea for mockito is here
+    // There are issues with mockito and coroutines
+    // This is where Mockk probably comes in handy
     @Ignore
     @Test
     fun test1() = runBlocking {

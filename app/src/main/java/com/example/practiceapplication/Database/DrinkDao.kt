@@ -11,7 +11,7 @@ interface DrinkDao {
     fun getAll(): List<Drink>
 
     @Query("SELECT * FROM drink_table WHERE drink_id IN (:drinkIds)")
-    fun loadAllByIds(drinkIds: IntArray): List<Drink>
+    fun loadAllByIds(drinkIds: Array<String>): List<Drink>
 
     @Query("SELECT * FROM drink_table WHERE drink_name LIKE :drinkName LIMIT 1")
     fun findByName(drinkName: String): Drink
@@ -19,6 +19,6 @@ interface DrinkDao {
     @Insert
     fun insertAll(vararg drinks: Drink)
 
-    @Delete
-    fun delete(drink: Drink)
+    @Query("DELETE FROM drink_table WHERE drink_id = :drinkId")
+    fun delete(drinkId: String)
 }
