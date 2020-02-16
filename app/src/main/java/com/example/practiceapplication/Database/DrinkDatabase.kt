@@ -7,11 +7,13 @@ import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.practiceapplication.Utils.DATABASE_NAME
 
-@Database(entities = [Drink::class], version = 1)
+@Database(entities = [Drink::class], version = 1, exportSchema = false) // exportSchema exports schema to file - leaving as TRUE  is good version history practice
 abstract class DrinkDatabase : RoomDatabase() {
     abstract fun drinkDao(): DrinkDao
 
     companion object {
+
+        var TEST_MODE = false
 
         // For Singleton instantiation
         @Volatile private var instance: DrinkDatabase? = null
@@ -26,7 +28,10 @@ abstract class DrinkDatabase : RoomDatabase() {
         // https://medium.com/google-developers/7-pro-tips-for-room-fbadea4bfbd1#4785
         private fun buildDatabase(context: Context): DrinkDatabase {
 
-            return Room.databaseBuilder(context, DrinkDatabase::class.java, DATABASE_NAME)
+            return kotlin.run {
+                if (TEST_MODE) Room.inMemoryDatabaseBuilder(context, DrinkDatabase::class.java)
+                else Room.databaseBuilder(context, DrinkDatabase::class.java, DATABASE_NAME)
+            }
                 .addCallback(object : RoomDatabase.Callback() {
                     override fun onCreate(db: SupportSQLiteDatabase) {
                         super.onCreate(db)
@@ -40,5 +45,6 @@ abstract class DrinkDatabase : RoomDatabase() {
                 })
                 .build()
         }
+
     }
 }
