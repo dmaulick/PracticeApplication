@@ -1,6 +1,5 @@
 package com.example.practiceapplication
 
-import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.practiceapplication.NetworkingModule.DrinksApiSource
 import com.example.practiceapplication.NetworkingModule.WModels.WDrinkResult
 import kotlinx.coroutines.runBlocking
@@ -16,7 +15,7 @@ class DrinksApiSourceTest {
     fun randomDrinkCall_UsingCoroutines() {
 
         val drinkResult: WDrinkResult = runBlocking {
-            DrinksApiSource.getRandromDrinkCoroutines()
+            DrinksApiSource.getRandomDrinkCoroutines()
         }
 
         assertNotNull(drinkResult)

@@ -9,15 +9,16 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 import kotlin.coroutines.coroutineContext
 
-class DrinkListViewModel(private val testViewModelParam: String) : ViewModel(), IDrinksListViewModel {
+class DrinkListViewModel @Inject constructor(private val drinksApiSource: IDrinksApiSource) : ViewModel() {
 
 
     val drinksListLiveData = MutableLiveData<Resource<List<WDrinkModel>>>()
 
 
-    override fun getDrinksList() {
+    fun getDrinksList() {
 
         drinksListLiveData.postValue(Resource.loading())
 

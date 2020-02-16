@@ -1,7 +1,9 @@
 package com.example.practiceapplication.NetworkingModule
 
+import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.practiceapplication.MainFeature.DrinksList.IDrinksApiSource
 import com.example.practiceapplication.NetworkingModule.WModels.WDrinkModel
 import com.example.practiceapplication.NetworkingModule.WModels.WDrinkResult
 import com.example.practiceapplication.PracticeApp
@@ -16,10 +18,9 @@ import retrofit2.converter.gson.GsonConverterFactory
 import timber.log.Timber
 
 
-object DrinksApiSource {
+class DrinksApiSource private constructor(context: Context): IDrinksApiSource {
 
     private val drinksApi: DrinksApiInterface by lazy {
-        val context = PracticeApp.appContext
 
         val interceptor = HttpLoggingInterceptor()
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
@@ -41,52 +42,59 @@ object DrinksApiSource {
     }
 
 
-    // Get Random drink
+    override suspend fun getRandomDrinkCoroutines(): WDrinkResult = drinksApi.getRandromDrinkCoroutines()
 
-    suspend fun getRandromDrinkCoroutines(): WDrinkResult = drinksApi.getRandromDrinkCoroutines()
+    override suspend fun getDrinkByIdCoroutine(drinkId: Int): WDrinkResult = drinksApi.getDrinkByIdCoroutine(drinkId)
 
-    fun getRandromDrinkLiveData(): LiveData<WDrinkResult?> {
+    companion object {
 
-        val liveData = MutableLiveData<WDrinkResult?>()
+        // For Singleton instantiation
+        @Volatile
+        private var instance: DrinksApiSource? = null
 
-        drinksApi.getRandromDrinkLiveData().enqueue(object : Callback<WDrinkResult> {
-            override fun onFailure(call: Call<WDrinkResult>, t: Throwable) {
-                Timber.e("Failure on livedata random drink call.")
-                Timber.e(t)
+        fun getInstance(context: Context) =
+            instance ?: synchronized(this) {
+                instance ?: DrinksApiSource(context).also { instance = it }
             }
 
-            override fun onResponse(call: Call<WDrinkResult>, response: Response<WDrinkResult>) {
-                liveData.postValue(response.body())
-            }
-
-        })
-
-        return liveData
     }
 
+//    fun getRandromDrinkLiveData(): LiveData<WDrinkResult?> {
+//
+//        val liveData = MutableLiveData<WDrinkResult?>()
+//
+//        drinksApi.getRandromDrinkLiveData().enqueue(object : Callback<WDrinkResult> {
+//            override fun onFailure(call: Call<WDrinkResult>, t: Throwable) {
+//                Timber.e("Failure on livedata random drink call.")
+//                Timber.e(t)
+//            }
+//
+//            override fun onResponse(call: Call<WDrinkResult>, response: Response<WDrinkResult>) {
+//                liveData.postValue(response.body())
+//            }
+//
+//        })
+//
+//        return liveData
+//    }
 
 
-    // Get drink by id
-
-    suspend fun getDrinkByIdCoroutine(drinkId: Int): WDrinkResult = drinksApi.getDrinkByIdCoroutine(drinkId)
-
-
-    fun getDrinkByIdLiveData(drinkId: Int): MutableLiveData<WDrinkResult?> {
-
-        val liveData = MutableLiveData<WDrinkResult?>()
-
-        drinksApi.getDrinkByIdLiveData(drinkId).enqueue(object : Callback<WDrinkResult> {
-
-            override fun onFailure(call: Call<WDrinkResult>, t: Throwable) {
-                Timber.e("Failure on livedata get drink by id call.")
-                Timber.e(t)
-            }
-
-            override fun onResponse(call: Call<WDrinkResult>, response: Response<WDrinkResult>) {
-                liveData.postValue(response.body())
-            }
-        })
-
-        return liveData
-    }
+//    fun getDrinkByIdLiveData(drinkId: Int): MutableLiveData<WDrinkResult?> {
+//
+//        val liveData = MutableLiveData<WDrinkResult?>()
+//
+//        drinksApi.getDrinkByIdLiveData(drinkId).enqueue(object : Callback<WDrinkResult> {
+//
+//            override fun onFailure(call: Call<WDrinkResult>, t: Throwable) {
+//                Timber.e("Failure on livedata get drink by id call.")
+//                Timber.e(t)
+//            }
+//
+//            override fun onResponse(call: Call<WDrinkResult>, response: Response<WDrinkResult>) {
+//                liveData.postValue(response.body())
+//            }
+//        })
+//
+//        return liveData
+//    }
 }

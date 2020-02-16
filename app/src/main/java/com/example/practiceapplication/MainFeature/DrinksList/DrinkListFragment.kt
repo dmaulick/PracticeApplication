@@ -45,11 +45,13 @@ class DrinkListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        DaggerDrinksListComponent.builder()
-            .appComponent((activity?.application as? PracticeApp)?.appComponent)
-            .drinksListModule(DrinksListModule())
+        (activity?.application as? PracticeApp)?.run {
+            DaggerDrinksListComponent.builder()
+                .appComponent(this.appComponent)
+            .drinksListModule(DrinksListModule(this))
             .build()
-            .inject(this) ?: throw Exception("Could not inject in Drinks list Fragment!")
+            .inject(this@DrinkListFragment) ?: throw Exception("Could not inject in Drinks list Fragment!")
+        }
 
         return inflater.inflate(R.layout.drink_list_fragment, null)
     }
