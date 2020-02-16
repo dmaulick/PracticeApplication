@@ -1,12 +1,14 @@
 package com.example.practiceapplication.MainFeature.DrinksList
 
+import com.example.practiceapplication.Database.DrinkDao
 import com.example.practiceapplication.NetworkingModule.WModels.WDrinkModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
-class DrinksListRepository private constructor(private val drinksApiSource: IDrinksApiSource): IDrinksListRepository {
+class DrinksListRepository private constructor(private val drinksApiSource: IDrinksApiSource,
+                                               private val drinkDao: DrinkDao): IDrinksListRepository {
 
     override suspend fun getExpectedListOfDrinks(): List<WDrinkModel> {
 
@@ -41,9 +43,9 @@ class DrinksListRepository private constructor(private val drinksApiSource: IDri
         @Volatile
         private var instance: DrinksListRepository? = null
 
-        fun getInstance(drinksApiSource: IDrinksApiSource) =
+        fun getInstance(drinksApiSource: IDrinksApiSource, drinkDao: DrinkDao) =
             instance ?: synchronized(this) {
-                instance ?: DrinksListRepository(drinksApiSource).also { instance = it }
+                instance ?: DrinksListRepository(drinksApiSource, drinkDao).also { instance = it }
             }
 
     }

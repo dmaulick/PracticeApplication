@@ -1,6 +1,8 @@
 package com.example.practiceapplication.Dagger
 
 import android.content.Context
+import com.example.practiceapplication.Database.DrinkDao
+import com.example.practiceapplication.Database.DrinkDatabase
 import com.example.practiceapplication.MainFeature.DrinksList.DrinksListRepository
 import com.example.practiceapplication.MainFeature.DrinksList.IDrinksApiSource
 import com.example.practiceapplication.MainFeature.DrinksList.IDrinksListRepository
@@ -25,8 +27,15 @@ class DrinksListModule(private val context: Context) {
 
     @Provides
     @FragmentScope
-    fun getDrinksListRepository(drinksApiSource: IDrinksApiSource): IDrinksListRepository {
-        return DrinksListRepository.getInstance(drinksApiSource)
+    fun getDrinksDao(context: Context): DrinkDao {
+        return DrinkDatabase.getInstance(context).drinkDao()
+    }
+
+
+    @Provides
+    @FragmentScope
+    fun getDrinksListRepository(drinksApiSource: IDrinksApiSource, drinkDao: DrinkDao): IDrinksListRepository {
+        return DrinksListRepository.getInstance(drinksApiSource, drinkDao)
     }
 
 

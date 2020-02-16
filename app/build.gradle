@@ -64,6 +64,8 @@ dependencies {
     implementation appDependencies.lifecycleExtensions
     implementation appDependencies.lifecycleVm
     implementation appDependencies.roomKtx
+    implementation appDependencies.roomRunTime
+    kapt appDependencies.roomAnnotationProcessor
 
 
     // Android Testing
@@ -86,6 +88,6 @@ dependencies {
     testImplementation appTestDependencies.androidxRoboelectric
     testImplementation appTestDependencies.instantTaskExecutor
     testImplementation appTestDependencies.androidxTestCoreKtx
-
+    testImplementation appTestDependencies.roomTesting
 
 }

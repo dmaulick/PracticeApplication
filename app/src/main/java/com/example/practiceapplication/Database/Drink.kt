@@ -11,5 +11,5 @@ data class Drink(
     @ColumnInfo(name = "drink_name") val drinkName: String,
     @ColumnInfo(name = "drink_category") val drinkCategory: String,
     @ColumnInfo(name = "drink_alcoholic") val alcoholic: Boolean,
-    @ColumnInfo(name = "drink_name") val instructions: String
+    @ColumnInfo(name = "drink_instructions") val instructions: String
 )
