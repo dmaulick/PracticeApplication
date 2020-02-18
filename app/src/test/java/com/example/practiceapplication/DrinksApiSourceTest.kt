@@ -53,7 +53,6 @@ class DrinksApiSourceTest {
         assertEquals(drinkResult.drinks.count(), 1)
 
         val drink = drinkResult.drinks[0]
-
         assertNotNull(drink)
         assertEquals(drink.alcoholic, "Alcoholic")
         assertEquals(drink.drinkCategory, "Cocktail")
