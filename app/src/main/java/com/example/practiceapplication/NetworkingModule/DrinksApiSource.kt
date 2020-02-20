@@ -8,6 +8,7 @@ import com.example.practiceapplication.NetworkingModule.WModels.WDrinkModel
 import com.example.practiceapplication.NetworkingModule.WModels.WDrinkResult
 import com.example.practiceapplication.PracticeApp
 import com.example.practiceapplication.R
+import com.example.practiceapplication.Utils.ContextUtils.IStringContext
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
@@ -18,14 +19,14 @@ import retrofit2.converter.gson.GsonConverterFactory
 import timber.log.Timber
 
 
-class DrinksApiSource private constructor(context: Context): IDrinksApiSource {
+class DrinksApiSource private constructor(stringContext: IStringContext): IDrinksApiSource {
 
     private val drinksApi: DrinksApiInterface by lazy {
 
         val interceptor = HttpLoggingInterceptor()
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
 
-        val drinksInterceptor = DrinksApiInterceptor(context)
+        val drinksInterceptor = DrinksApiInterceptor(stringContext)
 
         val client = OkHttpClient.Builder()
             .addInterceptor(interceptor)
@@ -33,7 +34,7 @@ class DrinksApiSource private constructor(context: Context): IDrinksApiSource {
             .build()
 
         val retrofit = Retrofit.Builder()
-            .baseUrl(context.getString(R.string.drinks_api_url))
+            .baseUrl(stringContext.getString(R.string.drinks_api_url))
             .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
@@ -52,9 +53,9 @@ class DrinksApiSource private constructor(context: Context): IDrinksApiSource {
         @Volatile
         private var instance: DrinksApiSource? = null
 
-        fun getInstance(context: Context) =
+        fun getInstance(stringContext: IStringContext) =
             instance ?: synchronized(this) {
-                instance ?: DrinksApiSource(context).also { instance = it }
+                instance ?: DrinksApiSource(stringContext).also { instance = it }
             }
 
     }

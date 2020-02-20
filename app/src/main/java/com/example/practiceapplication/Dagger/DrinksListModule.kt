@@ -8,6 +8,8 @@ import com.example.practiceapplication.MainFeature.DrinksList.IDrinksApiSource
 import com.example.practiceapplication.MainFeature.DrinksList.IDrinksListRepository
 import com.example.practiceapplication.MainFeature.DrinksViewModelFactory
 import com.example.practiceapplication.NetworkingModule.DrinksApiSource
+import com.example.practiceapplication.Utils.ContextUtils.IStringContext
+import com.example.practiceapplication.Utils.ContextUtils.StringContext
 import dagger.Module
 import dagger.Provides
 
@@ -18,11 +20,15 @@ class DrinksListModule(private val context: Context) {
     @FragmentScope
     fun getContext(): Context = context
 
+    @Provides
+    @FragmentScope
+    fun getStringContext(context: Context): IStringContext = StringContext(context)
+
 
     @Provides
     @FragmentScope
-    fun getDrinksApiSource(context: Context): IDrinksApiSource {
-        return DrinksApiSource.getInstance(context)
+    fun getDrinksApiSource(stringContext: IStringContext): IDrinksApiSource {
+        return DrinksApiSource.getInstance(stringContext)
     }
 
     @Provides
